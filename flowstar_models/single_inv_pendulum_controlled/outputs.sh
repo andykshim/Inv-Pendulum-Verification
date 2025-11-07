@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd outputs
+gnuplot controlled_pendulum_cart.plt
+gnuplot controlled_pendulum_config.plt
+gnuplot controlled_pendulum_phase.plt
+gnuplot controlled_pendulum_velocity.plt
+
+convert controlled_pendulum_cart.eps controlled_pendulum_cart.png
+convert controlled_pendulum_config.eps controlled_pendulum_config.png
+convert controlled_pendulum_phase.eps controlled_pendulum_phase.png
+convert controlled_pendulum_velocity.eps controlled_pendulum_velocity.png
+
+cd ..
