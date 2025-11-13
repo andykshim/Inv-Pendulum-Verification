@@ -1,14 +1,12 @@
 #!/bin/bash
 
 cd outputs
-gnuplot controlled_pendulum_cart.plt
-gnuplot controlled_pendulum_config.plt
-gnuplot controlled_pendulum_phase.plt
-gnuplot controlled_pendulum_velocity.plt
+gnuplot lqr_cart_motion.plt
+gnuplot lqr_config_space.plt
+gnuplot lqr_phase_portrait.plt
 
-convert controlled_pendulum_cart.eps controlled_pendulum_cart.png
-convert controlled_pendulum_config.eps controlled_pendulum_config.png
-convert controlled_pendulum_phase.eps controlled_pendulum_phase.png
-convert controlled_pendulum_velocity.eps controlled_pendulum_velocity.png
+convert lqr_cart_motion.eps lqr_cart_motion.png
+convert lqr_config_space.eps lqr_config_space.png
+convert lqr_phase_portrait.eps lqr_phase_portrait.png
 
 cd ..

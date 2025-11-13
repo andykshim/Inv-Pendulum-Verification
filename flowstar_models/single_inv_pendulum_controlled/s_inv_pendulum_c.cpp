@@ -25,10 +25,10 @@ int main()
     double F =   0.0;   // external force applied to the cart
 
     // LQR controller gains
-    double K1 = -10.0000;
-    double K2 = -15.28961;
-    double K3 = 79.79932; 
-    double K4 = 19.15430;
+    double K1 = -100.000;
+    double K2 = -152.8961;
+    double K3 = 797.9932; 
+    double K4 = 191.5430;
 
 //  -100.0000 -152.8961  797.9932  191.5430
 
@@ -52,16 +52,16 @@ int main()
         "v",
         "(" + u_control + "+ 0.1*sin(theta)*(0.5*omega^2 + 9.81*cos(theta))) / (1.0 + 0.1*sin(theta)^2)",
         "omega",
-        "(-1*" + u_control + " *cos(theta) - 0.05*omega^2*cos(theta)*sin(theta) - 1.1*9.81*sin(theta)) /(0.5*(1.0 + 0.1*sin(theta)^2))"
+        "(-1*(" + u_control + ")*cos(theta) - 0.05*omega^2*cos(theta)*sin(theta) - 1.1*9.81*sin(theta)) /(0.5*(1.0 + 0.1*sin(theta)^2))"
     }, vars);
 
     // Computational setting
     Computational_Setting setting(vars);
-    setting.setFixedStepsize(0.001, 5);
+    setting.setAdaptiveStepsize(0.00001, 0.001, 6);
     // setting.setCutoffThreshold(1e-7);
 
     // Remainder estimation
-    Interval I(-1e-3, 1e-3);
+    Interval I(-1e-4, 1e-4);
     vector<Interval> remainder_estimation(vars.size(), I);
     setting.setRemainderEstimation(remainder_estimation);
     
