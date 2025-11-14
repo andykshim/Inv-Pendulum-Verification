@@ -21,6 +21,7 @@ int main()
     double l =   0.5;   // length of the pendulum
     double g =   9.81;  // acceleration due to gravity
     double F =   0.0;   // external force applied to the cart
+    double d =   0.01;  // damping coefficient
 
     // define the ODEs
     // dx/dt = v
@@ -30,16 +31,23 @@ int main()
     // domega/dt = (-F * cos(theta) - m_p * l * omega^2 * cos(theta) * sin(theta) - (M + m_p) * g * sin(theta))
     //             / (l * (M + m_p * sin^2(theta)))
 
+    // ODE<Real> ode({
+    //     "v",
+    //     "(0.0 + 0.1*sin(theta)*(0.5*omega^2 + 9.81*cos(theta))) / (1.0 + 0.1*sin(theta)^2)",
+    //     "omega",
+    //     "(-0.0*cos(theta) - 0.1*0.5*omega^2*cos(theta)*sin(theta) - (1.0 + 0.1)*9.81*sin(theta)) / (0.5*(1.0 + 0.1*sin(theta)^2))"
+    // }, vars);
+
     ODE<Real> ode({
         "v",
-        "(0.0 + 0.1*sin(theta)*(0.5*omega^2 + 9.81*cos(theta))) / (1.0 + 0.1*sin(theta)^2)",
+        "(-0.01*.25*9.81*cos(theta)*sin(theta) + 0.1*0.25*(0.1*0.5*omega^2*sin(theta) - 0.01*v) + 0.1*0.25*0.0) / (0.1*0.25*(1.0 + 0.1*(1 - cos(theta)^2)))",
         "omega",
-        "(-0.0*cos(theta) - 0.1*0.5*omega^2*cos(theta)*sin(theta) - (1.0 + 0.1)*9.81*sin(theta)) / (0.5*(1.0 + 0.1*sin(theta)^2))"
+        "(1.1*0.1*9.81*0.5*sin(theta) - 0.1*0.5*cos(theta)*(0.1*0.5*omega^2*sin(theta) - 0.01*v) + 0.1*0.5*cos(theta)*0.0) / (0.1*0.25*(1.0 + 0.1*(1 - cos(theta)^2)))"
     }, vars);
 
     Computational_Setting setting(vars);
 
-    setting.setFixedStepsize(0.01, 5); // fixed stepsize is 0.01, fixed order is 5
+    setting.setAdaptiveStepsize(0.001, 0.1, 5); // fixed stepsize is 0.01, fixed order is 5
 
     // remainder estimation
     Interval I(-1e-2, 1e-2);
