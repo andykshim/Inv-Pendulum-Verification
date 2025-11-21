@@ -40,9 +40,9 @@ int main()
 
     ODE<Real> ode({
         "v",
-        "(-0.01*.25*9.81*cos(theta)*sin(theta) + 0.1*0.25*(0.1*0.5*omega^2*sin(theta) - 0.01*v) + 0.1*0.25*0.0) / (0.1*0.25*(1.0 + 0.1*(1 - cos(theta)^2)))",
+        "(-0.01*.25*9.81*cos(theta)*sin(theta) + 0.1*0.25*(0.1*0.5*omega^2*sin(theta) - 1*v) + 0.1*0.25*0.0) / (0.1*0.25*(1.0 + 0.1*(1 - cos(theta)^2)))",
         "omega",
-        "(1.1*0.1*9.81*0.5*sin(theta) - 0.1*0.5*cos(theta)*(0.1*0.5*omega^2*sin(theta) - 0.01*v) + 0.1*0.5*cos(theta)*0.0) / (0.1*0.25*(1.0 + 0.1*(1 - cos(theta)^2)))"
+        "(1.1*0.1*9.81*0.5*sin(theta) - 0.1*0.5*cos(theta)*(0.1*0.5*omega^2*sin(theta) - 1*v) + 0.1*0.5*cos(theta)*0.0) / (0.1*0.25*(1.0 + 0.1*(1 - cos(theta)^2)))"
     }, vars);
 
     Computational_Setting setting(vars);
@@ -58,10 +58,10 @@ int main()
 
     // Initial set
     // pi is vertically upward
-    Interval init_x(0 - w, 0 + w);
-    Interval init_v(0 - w, 0 + w);
-    Interval init_theta(3.14159 - w, 3.14159 + w);
-    Interval init_omega(0 - w, 0 + w);
+    Interval init_x(0);
+    Interval init_v(0);
+    Interval init_theta(3.14159 - 3*w, 3.14159 -w);
+    Interval init_omega(0);
 
     vector<Interval> box(vars.size());
     box[x_id] = init_x;
@@ -79,7 +79,7 @@ int main()
     // run the reachability computation
     clock_t begin, end;
     begin = clock();
-    double T = 5; // time horizon
+    double T = 2; // time horizon
 
     Symbolic_Remainder sr(initialSet, 200);
 
