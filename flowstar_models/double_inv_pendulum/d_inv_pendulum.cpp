@@ -20,52 +20,66 @@ int main()
     int u_id = vars.declareVar("u");
 
     // System parameters
-    // M = 1.5, mass of cart in kg
-    // m1 = 0.5, mass of first arm in kg
-    // m2 = 0.75, mass of second arm in kg
-    // L1 = 0.5, length of first arm in meters
-    // L2 = 0.75, length of second arm in meters
-    // g = 9.8, gravitational acceleration in meters per second squared
+    double M = 1.5; // mass of cart in kg
+    double m1 = 0.5; // mass of first arm in kg
+    double m2 = 0.5; // mass of second arm in kg
+    double L1 = 0.5; // length of first arm in meters
+    double L2 = 0.5; // length of second arm in meters
+    double g = 9.8; // gravitational acceleration in meters per second squared
+
+    // Matrix oefficient expressions
+    string d1 = to_string(M + m1 + m2);
+    string d2 = to_string((0.5*m1 + m2)*L1);
+    string d3 = to_string(0.5*m2*L2);
+    string d4 = to_string(((1.0/3.0)*m1 + m2)*L1*L1);
+    string d5 = to_string(0.5*m2*L1*L2);
+    string d6 = to_string((1.0/3.0)*m2*L2*L2);
+
+    string f1 = to_string((0.5*m1 + m2)*L1*g);
+    string f2 = to_string(0.5*m2*L2*g);
 
     // LQR controller gains (find later)
-    string K1 = to_string(2.2361);
-    string K2 = to_string(-397.9830);
-    string K3 = to_string(720.6787);
-    string K4 = to_string(7.4557);
-    string K5 = to_string(-14.0620);
-    string K6 = to_string(109.6306);
+    string K1 = to_string(2.1671);
+    string K2 = to_string(-462.0263);
+    string K3 = to_string(526.0287);
+    string K4 = to_string(8.0011);
+    string K5 = to_string(-12.0414);
+    string K6 = to_string(72.4076);
 
     // Define ODEs
-    string D_c = "(1/(0.088623 - 0.0351563*cos(theta1)^2 - 0.0543823*cos(theta1-theta2)^2 + 0.0395508*cos(theta1)*cos(theta1-theta2)*cos(theta2) - 0.0181274*cos(theta2)^2))";
-    string D_11 = "("+D_c + "*(0.0322266 - 0.0197754*cos(theta1-theta2)^2))";
-    string D_12 = "("+D_c + "*(-0.0703125*cos(theta1) + 0.0395508*cos(theta1-theta2)*cos(theta2)))";
-    string D_13 = "("+D_c + "*(0.0703125*cos(theta1)*cos(theta1-theta2) - 0.0644531*cos(theta2)))";
-    string D_22 = "("+D_c + "*(0.386719 - 0.0791016*cos(theta2)^2))";
-    string D_23 = "("+D_c + "*(-0.386719*cos(theta1-theta2) + 0.140625*cos(theta1)*cos(theta2)))";
-    string D_33 = "("+D_c + "*(0.630208 - 0.25*cos(theta1)^2))";
+    string D_c = "(1/("+d1+"*"+d4+"*"+d6+" - "+d2+"^2*"+d6+"*cos(theta1)^2 - "+d1+"*"+d5+"^2*cos(theta1-theta2)^2 + 2*"+d2+"*"+d3+"*"+d5+"*cos(theta1)*cos(theta1-theta2)*cos(theta2) - "+d3+"^2*"+d4+"*cos(theta2)^2))";
+    string D_11 = "("+D_c+"*("+d4+"*"+d6+" - "+d5+"^2*cos(theta1-theta2)^2))";
+    string D_12 = "("+D_c+"*(-"+d2+"*"+d6+"*cos(theta1) + "+d3+"*"+d5+"*cos(theta1-theta2)*cos(theta2)))";
+    string D_13 = "("+D_c+"*("+d2+"*"+d5+"*cos(theta1)*cos(theta1-theta2) - "+d3+"*"+d4+"*cos(theta2)))";
+    string D_21 = D_12;
+    string D_22 = "("+D_c+"*("+d1+"*"+d6+" - "+d3+"^2*cos(theta2)^2))";
+    string D_23 = "("+D_c+"*(-"+d1+"*"+d5+"*cos(theta1-theta2) + "+d2+"*"+d3+"*cos(theta1)*cos(theta2)))";
+    string D_31 = D_13;
+    string D_32 = D_23;
+    string D_33 = "("+D_c+"*("+d1+"*"+d4+" - "+d2+"^2*cos(theta1)^2))";
 
-    string C_12 = "(-0.5*sin(theta1)*omega1)";
-    string C_13 = "(-0.28125*sin(theta2)*omega2)";
-    string C_23 = "(0.140625*sin(theta1-theta2)*omega2)";
-    string C_32 = "(-0.140625*sin(theta1-theta2)*omega1)";
+    string C_12 = "(-"+d2+"*sin(theta1)*omega1)";
+    string C_13 = "(-"+d3+"*sin(theta2)*omega2)";
+    string C_23 = "("+d5+"*sin(theta1-theta2)*omega2)";
+    string C_32 = "(-"+d5+"*sin(theta1-theta2)*omega1)";
 
-    string G_21 = "(-3.0625*sin(theta1))";
-    string G_31 = "(-2.75625*sin(theta2))";
+    string G_21 = "(-"+f1+"*sin(theta1))";
+    string G_31 = "(-"+f2+"*sin(theta2))";
 
     vector<string> ode = {"v", "omega1", "omega2"};
     ode.push_back("omega1*(-"+D_11+"*"+C_12+"-"+D_13+"*"+C_32+") + omega2*(-"+D_11+"*"+C_13+"-"+D_12+"*"+C_23+") + u*("+D_11+") + (-"+D_12+"*"+G_21+"-"+D_13+"*"+G_31+")");
-    ode.push_back("omega1*(-"+D_12+"*"+C_12+"-"+D_23+"*"+C_32+") + omega2*(-"+D_12+"*"+C_13+"-"+D_22+"*"+C_23+") + u*("+D_12+") + (-"+D_22+"*"+G_21+"-"+D_23+"*"+G_31+")");
-    ode.push_back("omega1*(-"+D_13+"*"+C_12+"-"+D_33+"*"+C_32+") + omega2*(-"+D_13+"*"+C_13+"-"+D_23+"*"+C_23+") + u*("+D_13+") + (-"+D_23+"*"+G_21+"-"+D_33+"*"+G_31+")");
+    ode.push_back("omega1*(-"+D_21+"*"+C_12+"-"+D_23+"*"+C_32+") + omega2*(-"+D_21+"*"+C_13+"-"+D_22+"*"+C_23+") + u*("+D_21+") + (-"+D_22+"*"+G_21+"-"+D_23+"*"+G_31+")");
+    ode.push_back("omega1*(-"+D_31+"*"+C_12+"-"+D_33+"*"+C_32+") + omega2*(-"+D_31+"*"+C_13+"-"+D_32+"*"+C_23+") + u*("+D_31+") + (-"+D_32+"*"+G_21+"-"+D_33+"*"+G_31+")");
     
     // Define control law u
     vector<string> ctrl_law = {"(-"+K1+"*x - "+K2+"*theta1 - "+K3+"*theta2 - "+K4+"*v - "+K5+"*omega1 - "+K6+"*omega2)"};
 
     // Create Feedback object
-    Feedback<Real> feedback(vars, 0.001, ode, ctrl_law);
+    Feedback<Real> feedback(vars, 0.0005, ode, ctrl_law);
 
     // Computational setting
     Computational_Setting setting(vars);
-    setting.setAdaptiveStepsize(0.00005, 0.001, 3);
+    setting.setAdaptiveStepsize(0.00005, 0.0001, 3);
 
     // Remainder estimation
     Interval I(-1e-3, 1e-3);
@@ -100,7 +114,7 @@ int main()
     clock_t begin, end;
     begin = clock();
 
-    double T = 5; // time horizon
+    double T = 10; // time horizon
     Symbolic_Remainder sr(initialSet, 200);
 
     cout << "Starting reachability analysis..." << endl;
