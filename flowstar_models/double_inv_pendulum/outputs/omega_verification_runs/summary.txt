@@ -1,0 +1,163 @@
+Summary of Runs, each lists the change compare to previous run
+
+
+Run 1:
+•	Theta1 = -3w
+•	Theta2 = 3w
+•	ORder = 3
+
+Run 2:
+•	Theta1 = 3w
+•	Theta2 = 3w
+
+Run 3:
+•	Theta1 = 3w
+•	Theta2 = 3w
+•	x = 0.15
+•	T = 0.1
+
+Run 4:
+•	T = 4
+
+Run 5:
+Order = 2
+
+
+
+
+
+ 
+Run 6
+Doing omega analysis.
+•	preliminary order 2
+•	5 degrees for both
+•	0.01 rad/s for both
+•	T=0.2
+
+Run 7
+•	0.02 rad/s
+•	T=0.5
+Run8
+•	0.04 rad/s
+•	T=0.3
+
+Run9
+•	0.08 rad/s
+•	T=0.25
+
+Run10
+•	0.64 rad/s
+Run11
+•	10.24 rad/s
+•	FAILS
+Run12
+•	5.12 rad/s
+•	FAILS
+Run13
+•	2.56 rad/s
+•	FAILS
+Run14
+•	1.28 rad/s
+•	T=4
+•	Fails
+
+Run15
+•	Order =3
+•	fails
+Run16
+•	0.64rad/s
+•	Fails
+
+ 
+
+
+Run17
+•	Feedback step size = 0.001
+•	Fixed step size = 0.001
+•	T = 0.4 
+•	Much faster!
+
+Run18
+•	0.32 rad/s
+•	SAFE
+
+Run19
+•	0.48 rad/s
+•	SAFE
+
+Run20
+•	0.56 rad/s
+•	SAFE
+
+Run 21
+•	0.64 rad/s
+•	SAFE
+
+Run 22
+•	2.56 rad/s
+•	FAIL hard
+
+Run 23
+•	1.28 rad/s
+•	SAFE
+
+Run24
+•	1.92
+•	FAIL soft
+
+Run25
+•	1.6
+•	Fail soft
+
+Run 26
+•	2.24
+•	Fail hard
+
+Run 27
+•	2.08
+•	Fail hard
+
+Run 28
+•	1.44
+•	Safe
+•	REALLY CLOSE TO FAIL
+
+Run 29
+•	-1.6
+•	(1.6 is first soft fail in positive)
+•	Safe
+
+Run 30
+•	-1.92
+•	Soft fail
+
+Run 31
+•	-1.76
+•	safe
+
+Run 32
+•	-2.24
+•	Soft fail
+
+Run 33
+•	-4
+•	Fail hard
+
+Run 34
+•	-3.2
+•	Fail hard
+
+Run 35
+•	-2.7
+•	Fail hard
+
+
+
+
+
+
+
+
+
+
+
