@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.1.28)  14 DEC 2025 13:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.1.28)  14 DEC 2025 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1284,7 +1284,7 @@ l.560
        <./image_dump/d_0.1.5.png> <./image_dump/d_0.5.15.png> <./image_dump/ome
 ga_results.png>]
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 5
-68.
+70.
 
 (C:\Users\andyk\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
@@ -1294,7 +1294,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 10000) in paragraph at lines 568--569
+Underfull \hbox (badness 10000) in paragraph at lines 570--571
 [][][]$\OT1/pcr/m/n/10 https : / / github . com / andykshim /
  []
 
@@ -1309,9 +1309,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.30003pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.30003pt}.
 
-[11
-
-] (final_paper_template.aux)
+[11] (final_paper_template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -1349,7 +1347,7 @@ al/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/andyk/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/andyk/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/andyk/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on final_paper_template.pdf (11 pages, 1409543 bytes).
+Output written on final_paper_template.pdf (11 pages, 1409778 bytes).
 PDF statistics:
  285 PDF objects out of 1000 (max. 8388607)
  53 named destinations out of 1000 (max. 500000)

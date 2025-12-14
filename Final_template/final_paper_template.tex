@@ -462,7 +462,7 @@ There are a few strategies one can use to minimize the overapproximation blowup 
 
 \paragraph{Verification Strategy}Based on our preliminary testing we developed the following methodology to complete our verification. The double pendulum model is limited to verification runs within $T = 4s$. This timeframe allows most models with taylor order 3 to complete without overapproximation issues. These simulations complete in about 4-6 minutes, and serve as a good tradeoff between simulation accuracy and computation cost.
 
-Since we cannot define a larger initial set, we can run a reachability check on a set of representative distinct, but finite points within the wider initial set. We define an initial point as a verified safe initial point for the DIPC if the simulation is able to complete without “termination due to large overestimation”. 
+Since we cannot define a larger initial set, we run a reachability check on a finite set of distinct and representative points within the wider initial set. We define an initial point as a verified safe initial point for the DIPC if the simulation is able to complete without “termination due to large overestimation”. 
 
 Across our entire test set, there was no run that completed successfully where the feedback controller was unable to bring the pendulum arms towards the target upright position. This being the case, there was no need to define any safe set, or implement some check around the pendulum arm positions. The above condition of successful program completion was sufficient. This behavior will be further explained in the results section of this report.
 
@@ -548,7 +548,7 @@ Through our testing, we've found that the stability of the system with differing
 Figures \ref{fig:d_0.1.5} and \ref{fig:d_0.5.15} showcase two examples of failure. The first figure has a smaller value of $\theta_1^{(0)} = 0.1$, and the second figure has a larger value of $\theta_1^{(0)} = 0.5$. In the former case, the system very nearly made it to the time horizon, falling short by just a few control steps. The latter case was more unstable, stopping before reaching even 3.5 seconds. Indeed, we found through thorough testing that the maximum safe difference between the two initial angles decreases as $\theta_1^{(0)}$ increases. For these two cases, we found that the maximum safe difference if $\theta_1^{(0)} = 0.1$ is about 0.39, while the the safe difference if $\theta_1^{(0)} = 0.5$ is only 0.26. From this, we conclude that the maximum safe difference for this system up to T = 4.0 seconds is ~0.26, provided that $-0.5 \le \theta_1^{(0)}, \theta_2^{(0)} \le 0.5$
 
 \paragraph{DIPC - Differing Angular Velocities}
-For the purposes of verifying the safe initial set of angular velocities, we will start each verification with both pendulum arm angles at 5° from center. We took a binary-search like approach in order to find an accurate value for the maximum safe angular velocities in either direction.
+For the purposes of verifying the safe initial set of angular velocities, we start each verification with both pendulum arm angles at 5° from center. We took a binary-search like approach in order to find an accurate value for the maximum safe angular velocities in either direction.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4]{image_dump/omega_results.png}
@@ -556,14 +556,16 @@ For the purposes of verifying the safe initial set of angular velocities, we wil
     \label{fig:o_results}
 \end{figure}
 
-The two plots show the trajectory of the double inverted pendulum in terms of $\theta_1$ and $\theta_2$. Both runs have identical $\theta_1 = \theta_2 = 0.0873 $ ( 5°), but with different positive initial angular velocities. At $\dot{\theta} = 1.28 s^{-1}$ the controller is verified safe. Following the trajectory of the model, note the maximum positive angle deflection in $\theta_1$ of about 0.16. The pendulum arm then swings back towards upright, overshoots to a maximum negative  angle of about -0.075, before the verification completes near the upright angle. This controller is exhibiting damped oscillatory behavior, which is desired.
+The two plots show the trajectory of the double inverted pendulum in terms of $\theta_1$ and $\theta_2$. Both runs have identical $\theta_1 = \theta_2 = 0.0873 $ (5°), but with different positive initial angular velocities. At $\dot{\theta} = 1.28 s^{-1}$ the controller is verified safe. Following the trajectory of the model, note the maximum positive angle deflection in $\theta_1$ of about 0.16. The pendulum arm then swings back towards upright, overshoots to a maximum negative  angle of about -0.075, before the verification completes near the upright angle. This controller is exhibiting damped oscillatory behavior, which is desired.
 
 In contrast, with $\dot{\theta} = 2.08 s^{-1}$, the controller fails to suppress the large initial velocity and swing the pendulum arms back toward 0. Similarly to the results from the safe angle verification, we also saw initial points near the boundary between safe and unsafe that terminate early before T = 4s, even though it exhibits similar damped oscillatory behavior.
 
-In total, 16 separate runs were completed between the range of [-4, 2.56]. We verified the following subset between [-1.76, 1.44].
+In total, 16 separate runs were completed between the range of [-4, 2.56]. Within this range, we successfully verified the following subset between [-1.76, 1.44] as safe.
+
+In all of the simulations above, the control force is limited by the minimized cost function. In certain applications of inverted pendulum verification, a maximum force would be desirable, and this is possible within Flow*. For the purposes of this paper, we explored the full capabilites of a LQR controller outside of arbitrary physical constraints.
 
 \paragraph{Code.}
-We have stored all of our code in the github repository linked below. The code for the SIPC and DIPC systems are found within the \textit{flowstar\_models} folder. As a note, CROWN-Reach is included but is unused as of now.
+We have stored all of our code in the github repository linked below. The code for the SIPC and DIPC systems are found within the \textit{flowstar\_models} folder.
 
 \url{https://github.com/andykshim/Inv-Pendulum-Verification/tree/main}
 
