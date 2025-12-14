@@ -3,13 +3,13 @@
 \bibitem{DIPCShort}
 Alexander Bogdanov.
 \newblock Optimal control of a double inverted pendulum on a cart.
-\newblock Technical Report CSE-04-006, Oregon Health & Science University,
+\newblock Technical Report CSE-04-006, Oregon Health \& Science University,
   Portland, Oregon, December 2004.
 
 \bibitem{BruntonSIPC}
 Steven~L. Brunton and J.~Nathan Kutz.
 \newblock {\em Linear Control Theory}, pages 352--353.
-\newblock Brunton & Kutz, 2017.
+\newblock Brunton \& Kutz, 2017.
 
 \bibitem{FlowStar}
 Xin Chen, Erika Abraham, and Sriram Sankaranarayanan.
@@ -23,5 +23,19 @@ Ian Crowe-Wright.
 \newblock Control theory: Double pendulum inverted on a cart.
 \newblock Master's thesis, The University of New Mexico, Albuquerque, New
   Mexico, December 2018.
+
+\bibitem{DPMotion}
+Javier Jimenez-Lopez and Victor~J. Garcia-Garrido.
+\newblock Chaos and regularity in the double pendulum with lagrangian
+  descriptors.
+\newblock {\em International Journal of Bifurcation and Chaos}, 34(16), 2024.
+
+\bibitem{ARCH_COMP}
+Diego~Manzanas Lopez and et~al.
+\newblock Arch-comp24 category report: Artificial intelligence and neural
+  network control systems (ainncs) for continuous and hybrid systems plants.
+\newblock In G.~Frehse and M.~Althoff, editors, {\em 11th International
+  Workshop on Applied Verification for Continuous and Hybrid Systems}, volume
+  103 of {\em EPiC Series in Computing}, pages 64--121, 2024.
 
 \end{thebibliography}

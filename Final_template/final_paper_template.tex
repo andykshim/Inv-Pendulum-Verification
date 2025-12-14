@@ -52,12 +52,12 @@
 
 % The \classprojecttitle you define below is probably too long as a header.
 % Therefore, a short form for the running title is supplied here:
-\classprojecttitlerunning{ECE 584 Class Project Template}
+\classprojecttitlerunning{Inverted Pendulum Case Study}
 
 \begin{document}
 
 \twocolumn[
-\classprojecttitle{ECE 584 Class Project Final Report Template}
+\classprojecttitle{Single and Double Inverted Pendulum Case Study}
 
 % List of affiliations: The first argument should be a (short)
 % identifier you will use later to specify author affiliations
@@ -70,14 +70,14 @@
 \classprojectsetsymbol{equal}{*}
 
 \begin{classprojectauthorlist}
-\classprojectauthor{Firstname1 Lastname1}{equal}
-\classprojectauthor{Firstname2 Lastname2}{equal}
+\classprojectauthor{Andrew Shim}{equal}
+\classprojectauthor{Richard Engel}{equal}
 %\classprojectauthor{}{sch}
 %\classprojectauthor{}{sch}
 \end{classprojectauthorlist}
 
-\classprojectcorrespondingauthor{Firstname1 Lastname1}{first1.last1@illinois.edu}
-\classprojectcorrespondingauthor{Firstname2 Lastname2}{first2.last2@illinois.edu}
+\classprojectcorrespondingauthor{Andrew Shim}{akshim2@illinois.edu}
+\classprojectcorrespondingauthor{Richard Engel}{reengel2@illinois.edu}
 
 % You may provide any keywords that you
 % find helpful for describing your paper; these are used to populate
@@ -99,10 +99,10 @@
 \printAffiliationsAndNotice{\classprojectEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
-Balancing an inverted single and double pendulum system on a cart is a classical problem in the field of controls and cyber physical systems. Single and double pendulums are examples of non-linear systems, and the double pendulum specifically is a chaotic system which is more difficult to control. While the control of these systems has been thoroughly studied, the verification of such cyberphysical nonlinear systems is an ongoing field of research, with single and double inverted pendulum controllers being common benchmarks in this area. In this paper, we examine Linear Quadratic Regulator controllers for single and double inverted pendulum systems and implement these controllers in the reachability analysis tool Flow* \cite{FlowStar}. We then formulate strategies to verify the stability of these controllers using Flow*. We present a straightforward method of completely verifying the single inverted pendulum controller for an initial set, as well as a method for verifying the double inverted pendulum controller. We present our verification results for both the single and double inverted pendulum controllers, and we end with a discussion on future directions.
+Balancing an inverted single and double pendulum system on a cart is a classical problem in the field of controls and cyber physical systems. Single and double pendulums are examples of non-linear systems, and the double pendulum specifically is a chaotic system which is more difficult to control. While the control of these systems has been thoroughly studied, the verification of such cyberphysical nonlinear systems is an ongoing field of research, with single and double inverted pendulum controllers being common benchmarks in this area. In this paper, we examine Linear Quadratic Regulator controllers for single and double inverted pendulum systems and implement these controllers in the reachability analysis tool Flow* \cite{FlowStar}. We then formulate strategies to verify the stability of these controllers using Flow*. We present a straightforward method of completely verifying the single inverted pendulum controller for an initial set, as well as a method for verifying the double inverted pendulum controller. Finally, we present our verification results for both the single and double inverted pendulum controllers
 \end{abstract}
 
-\section{Introduction \instructions{(1 page)}}
+\section{Introduction}
 \label{sec:intro}
 The study of nonlinear cyberphysical systems is important due to the place they have in the real world. Cyberphysical systems become increasingly relevant in our lives, from autopilot controls to self-driving cars. The control of cyberphysical systems is an ongoing field of study in its own right, but the verification of such controllers is an area that still has a lot of work to be done. A couple of classic controls examples are the single inverted pendulum and double inverted pendulum cart controllers, which we aim to implement and verify using the tool Flow*. In doing so, we will build a greater understanding of strategies on how to verify nonlinear cyberphysical systems.
 
@@ -210,37 +210,175 @@ Here, the \textbf{Q} matrix represents the cost of deviation from the desired st
     \dot{\textbf{x}}=\textbf{Ax}+\textbf{B}u
 \end{equation}
 To implement digital control, matrices A and B are approximately discretized into $\boldsymbol\Phi\approx e^{\textbf{A}\Delta t}$ and $\boldsymbol\Gamma\approx\textbf{B}\Delta t$. Optimal digital LQR control is then given by:
-\begin{gather*}
+\begin{equation}
+    \label{LQR_ctrl}
     u_k = -\textbf{R}^{-1}\boldsymbol\Gamma^T\textbf{Px}_k\equiv-\textbf{Kx}_k
-\end{gather*}
+\end{equation}
 The \textbf{P} matrix is found by solving the discrete-time algebraic Riccati equation:
 \begin{gather*}
     \boldsymbol\Phi^T[\textbf{P} - \textbf{P}\boldsymbol\Gamma(\textbf{R}+\boldsymbol\Gamma^T\textbf{P}\boldsymbol\Gamma)^{-1}\boldsymbol\Gamma^T\textbf{P}]\boldsymbol\Phi-\textbf{P}+\textbf{Q}=\textbf{0}
 \end{gather*}
 
-\paragraph{The problem.} 
-\instructions{Clearly state the problem you are trying to solve. 
-Important concepts in the problem statement should be defined before they are used. For example, if Graph Neural Network (GNN) or Scan lines are used in the problem statement, then those should be defined in the background paragraph.
-You are encouraged to  use mathematical notations to define the problem precisely and succinctly as long as the notations are defined. 
-}
+\paragraph{LQR for SIPC and DIPC}
+For the SPIC, we define \textbf{Q} and \textbf{R} as such:
+\begin{gather*}
+    \begin{aligned}
+        \textbf{Q} &= \begin{pmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 10 & 0 \\
+            0 & 0 & 0 & 100
+        \end{pmatrix} \\
+        \textbf{R} &= 1
+    \end{aligned}
+\end{gather*}
 
+We then linearize the \textbf{A} and \textbf{B} matrices as such \cite{BruntonSIPC}:
+\begin{gather*}
+    \begin{aligned}
+        \textbf{A} &= \begin{pmatrix}
+            0 & 1 & 0 & 0 \\
+            0 & -\frac{\delta}{M} & \frac{mg}{M} & 0 \\
+            0 & 0 & 0 & 1 \\
+            0 & -\frac{\delta}{ML} & -\frac{(m+M)g}{ML} & 0
+        \end{pmatrix} \\
+        \textbf{B} &= \begin{pmatrix}
+            0 \\
+            \frac{1}{M} \\
+            0 \\
+            \frac{1}{ML}
+        \end{pmatrix}
+    \end{aligned}
+\end{gather*}
 
-\paragraph{State of the art.}
-\instructions{What are the existing solutions to this problem? What are their limitations? Why is there a need for a new solution? A more detailed literature review will go in the related work section.} 
+This gives us numerical matrices:
+\begin{gather*}
+    \begin{aligned}
+        \textbf{A} &= \begin{pmatrix}
+            0 & 1 & 0 & 0 \\
+            0 & -1 & 0.981 & 0 \\
+            0 & 0 & 0 & 1 \\
+            0 & -2 & 21.582 & 0
+        \end{pmatrix} \\
+        \textbf{B} &= \begin{pmatrix}
+            0 \\
+            1 \\
+            0 \\
+            2
+        \end{pmatrix}
+    \end{aligned}
+\end{gather*}
+And from here, we can calculate our K matrix:
+\begin{gather*}
+    \textbf{K} = \begin{pmatrix}
+        -1.0000 \\
+        -3.7944 \\
+        39.2831 \\
+        13.1990
+    \end{pmatrix}
+\end{gather*}
 
-\paragraph{Your approach.}
-\instructions{What is your proposed solution to the problem? How is it different from the existing solutions?}
+For DPIC, we define \textbf{Q} and \textbf{R} as such:
+\begin{gather*}
+    \begin{aligned}
+        \textbf{Q} &= \begin{pmatrix}
+            5 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 50 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 50 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 20 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 700 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 700
+        \end{pmatrix} \\
+        \textbf{R} &= 0.5
+    \end{aligned}
+\end{gather*}
+We can linearize \textbf{A} and \textbf{B} as such \cite{DIPCShort}:
+\begin{gather*}
+    \begin{aligned}
+        \textbf{A} &= \begin{pmatrix}
+            \textbf{0} & \textbf{I} \\
+            -\textbf{D}(\textbf{0})^{-1}\frac{\partial\textbf{G}(\textbf{0})}{\partial\theta} & \textbf{0}
+        \end{pmatrix} \\
+        \textbf{B} &= \begin{pmatrix}
+            \textbf{0} \\
+            \textbf{D}(\textbf{0})^{-1}\textbf{H}
+        \end{pmatrix}
+    \end{aligned}
+\end{gather*}
+This yields:
+\begin{gather*}
+    \begin{aligned}
+        \textbf{A} &= \begin{pmatrix}
+            0 & 0 & 0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 1 \\
+            0 & -5.75217 & 0.63913 & 0 & 0 & 0 \\
+            0 & 63.1913 & -26.8435 & 0 & 0 & 0 \\
+            0 & -80.5304 & 67.7478 & 0 & 0 & 0
+        \end{pmatrix} \\
+        \textbf{B} &= \begin{pmatrix}
+            0 \\
+            0 \\
+            0 \\
+            0.608696 \\
+            -1.56522 \\
+            0.521739
+        \end{pmatrix}
+    \end{aligned}
+\end{gather*}
+From this, we derive our \textbf{K} matrix:
+\begin{gather*}
+    \textbf{K} = \begin{pmatrix}
+        3.0385 \\
+        -589.2321 \\
+        684.6339 \\
+        11.0901 \\
+        -13.5135 \\
+        95.9474
+    \end{pmatrix}
+\end{gather*}
+
+\paragraph{The problem} 
+Our main goal is to take these LQR controller designs for the SIPC and DIPC systems and verify their stability. For the SIPC, we will consider an initial set:
+\begin{equation}
+    \label{SIPC_init}
+    X_0 = \{\textbf{x}\in\mathbb{R}^4:x=0, v=0, \theta\in[-0.5, 0.5], \omega\in[-1.0, 1.0]\}
+\end{equation}
+We want to verify that SIPC stays within the safe set $S_{SIPC}$ over time horizon $T=5.0$ seconds:
+\begin{equation}
+    \label{SIPC_safe}
+    \begin{aligned}
+        S_{SIPC}& = \{x\in\mathbb{R}^4:-2\le x\le 2 \wedge -\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\} \\
+        \forall&\textbf{x}_0\in X_0, \forall t\in[0, T]: \phi(\textbf{x}_0, t)\in S
+    \end{aligned}
+\end{equation}
+
+For the DIPC, we must take a different approach for reasons that will be discussed later. We will verify the range of safe initial angles and angular velocities for a time horizon of $T=4.0$ seconds. We will use single initial states rather than intial set intervals, and will combine these results to create a verified safe set. We will do this using a manual binary search with a granularity of 0.01 seconds, and we will consider the system test safe if it doesn't terminate early due to overapproximation, which is our safety condition $S_{DIPC}$:
+\begin{equation}
+    \label{DIPC_safe}
+    X_0, \forall t\in[0, t]: S_{DIPC}
+\end{equation}
+
+\paragraph{State of the art}
+There has been much work done in the study of single and double inverted pendulum control and the control of nonlinear systems in general, and there is ongoing research into the verification of cyberphysical nonlinear controllers. As the controllers get more complex, it becomes necessary to combine and extend the functionality of tools rather than using a singular tool. This case study serves as an introduction to analyzing nonlinear cyberphysical systems using tools such as Flow*, and it serves as a gateway into verification research for complex cyberphysical systems using a multitude of verification tools.
+
+\paragraph{Our approach}
+We plan to achieve these verifications by using Flow*. Flow* is a tool that performs reachability verification by utilizing Taylor Models to generate flowpipes \cite{FlowStar}. Flowpipes are essentially overapproximations of the states that would be reachable from the initial set, guaranteeing that the reachable states are contained within these flowpipes. If a flowpipe completely enters a user-defined unsafe set, the system is declared unsafe. If a flowpipe completely avoids the unsafe set, the system is declared safe. A flowpipe partially intersecting the unsafe set is an unknown result.
+
+Our approach was to first implement the SIPC into Flow* to get used to using the tool. We first implemented the dynamics of the system, and then implemented the control law. Then we attempted a direct reachability analysis on the system with a defined initial set. Once this was achieved, we then implemented the DIPC by first implementing the dynamics and then the control law, and attempted reachability analysis on the system using single initial states rather than initial sets. For both systems, our strategy was to attempt direct reachability analysis first, but the increased complexity of the DIPC necessitated a different approach that will be explained in the Methodology section.
 
 \paragraph{Contributions}
-\instructions{Summary of key contributions in this work.}
+Our case study into the SIPC and DIPC systems got us more familiar with types of classical control and how to work with those controllers in Flow*. Having grown comfortable with using Flow* to implement them, this opens the doorway into further experimentation with how to verify different cyberphysical systems, how to implement different types of controllers, and how to extend Flow* and potentially use it with other tools for a more complete verification of complex controllers.
 
 
-\section{Related work \instructions{(1/2 page)}}
+\section{Related work}
 \label{sec:related}
-\instructions{Discuss the existing work in this area. What are the key contributions of previous studies? How does your work relate to or differ from these prior efforts?
-You can cite papers and books using~\cite{BruntonSIPC,FlowStar,DIPCLong,DIPCShort} and include the references in the final.bib file.}
+Extensive study has been done previously into the control of both SIPC and DIPC systems, using a variety of classical controllers. The motion of a single pendulum is of course a classic example of simple harmonic motion, while the double pendulum is a classic example of chaotic motion. The exact regions of stability concerning the double pendulum have also been analysed \cite{DPMotion}, which allows for the control of such a system. Significant work has been done towards the design of LQR controllers for both the single pendulum \cite{BruntonSIPC} and double pendulum \cite{DIPCLong, DIPCShort} systems, and there has also been work done in further controller types for these systems such as a State Dependent Riccati Equation (SDRE) controller \cite{DIPCShort}. From this, it’s clear that the design of controllers for these systems is fairly solid.
 
-\section{Methodology \instructions{(2-3 pages)}}
+Extensive work has also been done in developing the Flow* tool to work with cyberphysical nonlinear systems such as these \cite{FlowStar}. Further studies have been done on extending Flow* to be used with other tools such as $\alpha,\beta$-CROWN for the verification of neural-network controlled nonlinear systems \cite{ARCH_COMP}, with research ongoing for this area. Our goal is to take a step back and directly implement classical controller designs for the SIPC and DIPC systems in Flow* and to see what we can do with that. This focused case study will give us a solid foundation to launch into future studies concerning the verification of nonlinear cyberphysical systems.
+
+
+\section{Methodology}
 \label{sec:method}
 \paragraph{SIPC Implementation}
 Implementing the SIPC system in Flow* is fairly straightforward. Flow* provides the functions and classes necessary to both incorporate the ODEs and the control law of the system and build a testing routine in C++. The first step is to create a Flow* Variables object and to define the necessary variables for the system. This includes both the state space variables and the input variables. For SPIC, we have four state space variables and one input variable, assigned as such:
@@ -250,24 +388,185 @@ Implementing the SIPC system in Flow* is fairly straightforward. Flow* provides 
     \caption{Declaring variables for SIPC}
     \label{fig:s_vars}
 \end{figure}
+The next step is to push the ODEs of the system into a vector of strings. The order of the ODEs in the string vector must correspond to the order that the variables were assigned. For the SPIC, we incorporate the ODEs from \ref{SIPC_ODE} like so (note, user-defined parameters are written in directly for this case):
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.2]{image_dump/SIPC_odes.png}
+    \caption{Defining ODEs for SIPC}
+    \label{fig:s_odes}
+\end{figure}
+For systems with controller input, it is also necessary to define the control laws into its own vector of strings. In our case, since we only have one controller input variable, we only need to define one control law. We incorporate \ref{LQR_ctrl} and the associated K values like so:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{image_dump/SIPC_Klaw.png}
+    \caption{Declaring control law for SIPC}
+    \label{fig:s_ctrl}
+\end{figure}
+Finally, we can create a Flow* Feedback object with the defined variables, ODEs, control laws, and a user-assigned control step size. For the SIPC, we chose a step size of 0.01 seconds.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{image_dump/SIPC_feed.png}
+    \caption{Initializing Feedback object for SIPC}
+    \label{fig:s_feed}
+\end{figure}
+With the feedback object created, we can then create a Flow* \textit{Computational\_Setting} object, which we can use to set our step size, order, and a maximum remainder estimation for this system. This also makes use of Flow*’s Interval class. Flow* allows the user to set either an adaptive step size or an adaptive TM order to help ensure that the error at each step stays within the maximum remainder interval \cite{FlowStar}. The initial set is also defined using Intervals and assigned to a vector, and the safe set is defined using a vector of Flow* Constraints. A time horizon must also be defined, along with a Flow* \textit{Symbolic\_Remainder} object.
 
+Once all of these parameters have been initialized and set, we can run the reachability analysis on the Feedback object. The result and Taylor Models from the reachability analysis is then stored in a Flow* \textit{Reach\_of\_Reachability} object, and the result can then be analyzed using built in functions such as \textit{isCompleted()} and \textit{isSafe()}. At this point the flowpipes can also be plotted by using the \textit{transformToTaylorModels()} function on the results, and by creating a Flow* \textit{Plot\_Setting} object. After this, the plots can be output to plot files for user-selected variable dimensions.
 
+With all of this in place, we can directly set our desired initial set and safe set and run a direct reachability analysis with those parameters. This works well for the SIPC, but taking such a direct approach for the DIPC leads to some issues, which will be discussed in the next section.
 
+\paragraph{DIPC Implementation and Issues}
+The DIPC system implementation in Flow* takes the same fundamental approach as the SIPC system. Due to the complexity of the ODE, we started by defining intermediary strings d1-d6 and f1-f2, corresponding to \ref{DIPC_mat}. This is shown in Figure \ref{fig:d_coefs}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.35]{image_dump/DIPC_coefs.png}
+    \caption{Defining DIPC coefficient strings}
+    \label{fig:d_coefs}
+\end{figure}
 
-\section{Results \instructions{(2-3 pages)}}
+We then used these coefficients to build strings for every non-zero entry in the matrices used in \ref{DIPC_mat}, as shown in Figure \ref{fig:d_entrs}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.30]{image_dump/DIPC_entrs.png}
+    \caption{Defining DIPC non-zero matrix members}
+    \label{fig:d_entrs}
+\end{figure}
+
+The final step is to use these matrix entries to expand \ref{DIPC_ODE} out to the individual state space ODEs, shown in Figure \ref{fig:d_ODE}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.30]{image_dump/DIPC_ODE.png}
+    \caption{Setting up the state space ODEs}
+    \label{fig:d_ODE}
+\end{figure}
+
+Aside from these steps, the setup is largely the same. We define the control law, create the Feedback object (for DIPC we picked a control step of 0.001 seconds), and define the necessary parameters for reachability analysis. For the DIPC system, due to its chaotic nature, we decided to use single initial states rather than initial sets for analysis.
+
+With this implementation of DIPC in Flow* however, we noticed some undesired results compared to the SIPC. The simulation exits with the message “Flowpipe computation terminated due to large overestimation”. When the flowpipe overapproximation error accumulates over time, past a \textit{cuttoff\_threshold}value defined within the Flow* tool, then this message is printed and the simulation is terminated. This error accumulation behavior is clearly visible in the output taylor flowpipe plots.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{image_dump/Blowup.png}
+    \caption{Flowpipe trajectories. The top graph shows the trajectory beginning to blow up, and the bottom graph shows a further overestimation.}
+    \label{fig:blowup}
+\end{figure}
+
+This overapproximation “blowup” is largely unavoidable for the DIPC model due to its complex nature. Even very similar initial points will result in drastically different execution paths, diverging more and more as time increases. Because the flowpipe polygon will have to be drawn to encompass all possible execution paths, the diverging nature will quickly lead to blowups. This eliminates our ability to define an initial set for DIPC simulations. Instead we start from the smallest possible set: a point. however, even from a point the simulation overapproximation still exists, since Flow* automatically sets a tiny interval around the initial point.
+
+There are a few strategies one can use to minimize the overapproximation blowup as much as possible. Higher order of taylor series approximations and smaller stepsizes of Flow* simulations both act to improve the accuracy of the simulation and thus reduce the overapproximation error. This approach does delay the blowing up behavior, but it isn’t eliminated; moreover, the computation time increases very quickly in an exponential manner.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.23]{image_dump/overlay.png}
+    \caption{An overlay of two runs from the same initial state, showing the effect of a higher TM order.}
+    \label{fig:overlay}
+\end{figure}
+
+\paragraph{Verification Strategy}Based on our preliminary testing we developed the following methodology to complete our verification. The double pendulum model is limited to verification runs within $T = 4s$. This timeframe allows most models with taylor order 3 to complete without overapproximation issues. These simulations complete in about 4-6 minutes, and serve as a good tradeoff between simulation accuracy and computation cost.
+
+Since we cannot define a larger initial set, we can run a reachability check on a set of representative distinct, but finite points within the wider initial set. We define an initial point as a verified safe initial point for the DIPC if the simulation is able to complete without “termination due to large overestimation”. 
+
+Across our entire test set, there was no run that completed successfully where the feedback controller was unable to bring the pendulum arms towards the target upright position. This being the case, there was no need to define any safe set, or implement some check around the pendulum arm positions. The above condition of successful program completion was sufficient. This behavior will be further explained in the results section of this report.
+
+\section{Results}
 \label{results}
 
 \paragraph{Benchmarks and models.}
-\instructions{What benchmarks and models are used to evaluate your method?}
+The LQR controller punishes heavily for deviations from the target angles and angular velocities. As such, we will focus on a reachability analysis on a set of ranging initial pendulum arm angles and pendulum angle velocities. The verification of the SIPC system is straightforward due to the much faster runtime and lower complexity. The DIPC system is more complex however, so we take the alternate approach discussed previously. We test both equal initial angles and differing initial angles, and we test initial angular velocities separately. As discussed before, we will test a set of initial points rather than initial sets due to the tendency of the simulation to blow up.
 
 \paragraph{Evaluation metrics.}
-\instructions{What metrics are used to evaluate the performance of your method?}
+As discussed before, our criteria for safety is based on the completion of the simulation up to $T = 4.0$ seconds. Every run that was successfully completed, we observed that the controller successfully brought the system back towards equilibrium, which is a strong indicator of stability given how sensitive a double pendulum system is and how difficult it would be to keep stable. Nearly every run that didn’t successfully finish due to overestimation indicates an initial state where the controller’s motion is likely to deviate over the long term, which seems to be a decent indicator of instability.
 
-\paragraph{Results tables/graphs.}
-\instructions{Present the results of your experiments using tables and graphs. You are encouraged to organize the tables according to the main lessons you want to convey.}
+The only exception to this is the initial state of $\textbf{x}=0$, or equilibrium. In this case, the simulation ends early due to overestimation, but this is just due to a quirk of how Flow* works. A single initial state is converted to a tiny initial set surrounding this point state during the reachability analysis. Therefore, with an initial state at equilibrium, you have possible starting states with both slightly negative and slightly positive angles and angular velocities. These initial states would send the cart controller in opposite directions, quickly expanding the flowpipe overestimation from the initial set, and the limitation of our TM order to 3 leads to an early simulation failure. This case is an outlier, as all initial states we tested that were close to equilibrium showed strong stability with minimal overestimation in the outputs.
+
+
+\paragraph{SIPC Results}
+As discussed earlier, it is straightforward to run the reachability analysis on the SIPC system with our desired initial set. The figures below show the plotted output given our initial set as defined in \ref{SIPC_init}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/s_full_n.png}
+    \caption{Flowpipe graphs. Top is $v$ vs $x$, bottom is $\omega$ vs $\theta$.}
+    \label{fig:s_full}
+\end{figure}
+These graphs represent an overestimation of the possible position, velocity, angular, and angular velocity values that the SIPC can have starting with the initial set. In the upper graph, the flowpipe starts at $x,v = 0$, but both values must move outward to rebalance the pendulum, with the velocity eventually settling near 0. With a longer time horizon, the position of the cart would eventually also return to 0. In the right graph, the flowpipe starts at the initial set, and over time converges to $\theta,\omega = 0$. These graphs are pretty hard to read, so we can split apart the initial set to make the motion clearer.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/s_-0.5_-0.2_n.png}
+    \caption{Flowpipe graphs for $\theta_0\in[-0.5, -0.2]$}
+    \label{fig:s_aslice}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/s_-1.0_-0.5_n.png}
+    \caption{Flowpipe graphs for $\omega_0\in[-1.0^{-1}, -0.5^{-1}]$}
+    \label{fig:s_oslice}
+\end{figure}
+Figure \ref{fig:s_aslice} depicts the state space motion with only an outer slice of the initial angular set, and Figure \ref{fig:s_oslice} depicts the state space motion with an outer slice of the initial angular velocity set. The upper graph for both figures show a similar cart motion over the time horizon, with the position and velocity flowpipe starting at around 0, expanding outward and over to the right of the graph, and converges to v = 0 near the time horizon. In both lower graphs, it’s clear to see how the flowpipe starts at the defined initial set and converges to $\theta,\omega = 0$ over time. From all of this, the safety of the single inverted pendulum controller with the initial set \ref{SIPC_init} is verified for time horizon T = 5.0 seconds.
+
+\paragraph{DIPC - Same Angles}
+We wanted to test a range of different conditions for the DIPC system, so first we decided to run some tests with $\theta_1^{(0)} = \theta_2^{(0)}$. We ran lots of test runs with initial angles between -0.8 and 0.8, with a few of the resulting graphs being shown here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/d_0.2.png}
+    \caption{Flowpipe graphs for $\theta_1^{(0)} = \theta_2^{(0)} = 0.2$}
+    \label{fig:d_0.2}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/d_-0.35.png}
+    \caption{Flowpipe graphs for $\theta_1^{(0)} = \theta_2^{(0)} = -0.35$}
+    \label{fig:d_-0.35}
+\end{figure}
+We can see from the above figures that the system follows a similarly shaped trajectory for the angles in this range. The overall domain of values varies depending on the size of the initial angle, and the motion for negative and positive angles are diagonally mirrored, but the overall shape of the trajectories are very similar.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/d_0.8.png}
+    \caption{Flowpipe graphs for $\theta_1^{(0)} = \theta_2^{(0)} = 0.8$}
+    \label{fig:d_0.8}
+\end{figure}
+The above graphs depict a failure, where the simulation ended very early on due to overestimation. The cart position and velocity begin to take off, and it fails to bring the angles closer to 0 before the simulation ends. From further testing, we concluded that the controller is safe with an initial angle range of [-0.70, 0.70] up to a time horizon of T = 4.0 seconds, according to our criteria.
+
+\paragraph{DIPC - Differing Angles}
+In addition to straight-arm angles, we wanted to test how the system would behave with differing initial angles. The angles themselves we kept within -0.5 and 0.5 radians, since we’ve already established that to be well within safety for our purposes. One of the successful test runs is shown in Figure \ref{fig:d_-0.4_-0.2}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/d_-0.4_-0.2.png}
+    \caption{Flowpipe graphs for $\theta_1^{(0)} =-0.4, \theta_2^{(0)} = -0.2$}
+    \label{fig:d_-0.4_-0.2}
+\end{figure}
+Through our testing, we've found that the stability of the system with differing initial angles is largely dependent on the size of the difference between $theta_1^{(0)}$ and $theta_2^{(0)}$, as well as the magnitude of $theta_1^{(0)}$. An increase of either value leads to a decrease in stability, and a larger $theta_1^{(0)}$ decreases the threshold of the difference between the angles before the system becomes unstable.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/d_0.1.5.png}
+    \caption{Flowpipe graphs for $\theta_1^{(0)} = 0.1, \theta_2^{(0)} = 0.5$. Failure}
+    \label{fig:d_0.1.5}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/d_0.5.15.png}
+    \caption{Flowpipe graphs for $\theta_1^{(0)} = 0.5, \theta_2^{(0)} = 0.15$. Failure}
+    \label{fig:d_0.5.15}
+\end{figure}
+Figures \ref{fig:d_0.1.5} and \ref{fig:d_0.5.15} showcase two examples of failure. The first figure has a smaller value of $\theta_1^{(0)} = 0.1$, and the second figure has a larger value of $\theta_1^{(0)} = 0.5$. In the former case, the system very nearly made it to the time horizon, falling short by just a few control steps. The latter case was more unstable, stopping before reaching even 3.5 seconds. Indeed, we found through thorough testing that the maximum safe difference between the two initial angles decreases as $\theta_1^{(0)}$ increases. For these two cases, we found that the maximum safe difference if $\theta_1^{(0)} = 0.1$ is about 0.39, while the the safe difference if $\theta_1^{(0)} = 0.5$ is only 0.26. From this, we conclude that the maximum safe difference for this system up to T = 4.0 seconds is ~0.26, provided that $-0.5 \le \theta_1^{(0)}, \theta_2^{(0)} \le 0.5$
+
+\paragraph{DIPC - Differing Angular Velocities}
+For the purposes of verifying the safe initial set of angular velocities, we will start each verification with both pendulum arm angles at 5° from center. We took a binary-search like approach in order to find an accurate value for the maximum safe angular velocities in either direction.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{image_dump/omega_results.png}
+    \caption{Two flowpipe trajectories from separate angular velocity tests. The top shows a successful run, the bottom shows a failure.}
+    \label{fig:o_results}
+\end{figure}
+
+The two plots show the trajectory of the double inverted pendulum in terms of $\theta_1$ and $\theta_2$. Both runs have identical $\theta_1 = \theta_2 = 0.0873 $ ( 5°), but with different positive initial angular velocities. At $\dot{\theta} = 1.28 s^{-1}$ the controller is verified safe. Following the trajectory of the model, note the maximum positive angle deflection in $\theta_1$ of about 0.16. The pendulum arm then swings back towards upright, overshoots to a maximum negative  angle of about -0.075, before the verification completes near the upright angle. This controller is exhibiting damped oscillatory behavior, which is desired.
+
+In contrast, with $\dot{\theta} = 2.08 s^{-1}$, the controller fails to suppress the large initial velocity and swing the pendulum arms back toward 0. Similarly to the results from the safe angle verification, we also saw initial points near the boundary between safe and unsafe that terminate early before T = 4s, even though it exhibits similar damped oscillatory behavior.
+
+In total, 16 separate runs were completed between the range of [-4, 2.56]. We verified the following subset between [-1.76, 1.44].
 
 \paragraph{Code.}
-\instructions{Provide links to your code or github repositories. Save your code and scripts in an organized fashion so that the results presented here can be replicated.}
+We have stored all of our code in the github repository linked below. The code for the SIPC and DIPC systems are found within the \textit{flowstar\_models} folder. As a note, CROWN-Reach is included but is unused as of now.
+
+\url{https://github.com/andykshim/Inv-Pendulum-Verification/tree/main}
+
 
 \bibliographystyle{plain}
 \bibliography{final}

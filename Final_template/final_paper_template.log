@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.13)  13 DEC 2025 23:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.12.13)  14 DEC 2025 11:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -871,10 +871,7 @@ File: omlptm.fd
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <9> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 99.
 
-Underfull \hbox (badness 2384) in paragraph at lines 99--99
-[][][]| $[]$\OT1/ptm/m/n/9 (+20) Equal con-tri-bu-tion . Cor-re-spon-dence to: 
-First-name1
- []
+Underfull \vbox (badness 1147) has occurred while \output is active []
 
 <image_dump/SIPC.png, id=8, 513.92pt x 337.26pt>
 File: image_dump/SIPC.png Graphic file (type png)
@@ -922,27 +919,339 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.226 
-       <./image_dump/DIPC.png>]
-<image_dump/SIPC_vars.png, id=55, 629.35126pt x 258.9675pt>
+l.234 \end{gather*}
+                    <./image_dump/DIPC.png>]
+Overfull \hbox (22.07787pt too wide) detected at line 346
+[][][]\OML/cmm/m/it/10 X[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f[] 2 \U/msb/m/n/
+10 R[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 x \OT1/cmr/m/n/10 = 0\OML/cmm/m/it/10
+ ; v \OT1/cmr/m/n/10 = 0\OML/cmm/m/it/10 ; ^^R \OMS/cmsy/m/n/10 2 \OT1/cmr/m/n/
+10 [\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 5\OM
+L/cmm/m/it/10 ; \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 5]\OML/cmm/m
+/it/10 ; ! \OMS/cmsy/m/n/10 2 \OT1/cmr/m/n/10 [\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n
+/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 1\OM
+L/cmm/m/it/10 :\OT1/cmr/m/n/10 0]\OMS/cmsy/m/n/10 g
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.30003pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.30003pt}.
+
+[3]
+<image_dump/SIPC_vars.png, id=70, 629.35126pt x 258.9675pt>
 File: image_dump/SIPC_vars.png Graphic file (type png)
 <use image_dump/SIPC_vars.png>
-Package pdftex.def Info: image_dump/SIPC_vars.png  used on input line 249.
+Package pdftex.def Info: image_dump/SIPC_vars.png  used on input line 387.
 (pdftex.def)             Requested size: 220.27623pt x 90.63997pt.
+<image_dump/SIPC_odes.png, id=72, 1250.6725pt x 263.98625pt>
+File: image_dump/SIPC_odes.png Graphic file (type png)
+<use image_dump/SIPC_odes.png>
+Package pdftex.def Info: image_dump/SIPC_odes.png  used on input line 394.
+(pdftex.def)             Requested size: 250.13007pt x 52.79631pt.
+
+Overfull \hbox (15.25256pt too wide) in paragraph at lines 394--395
+ [][] 
+ []
+
+<image_dump/SIPC_Klaw.png, id=74, 797.98125pt x 358.33875pt>
+File: image_dump/SIPC_Klaw.png Graphic file (type png)
+<use image_dump/SIPC_Klaw.png>
+Package pdftex.def Info: image_dump/SIPC_Klaw.png  used on input line 401.
+(pdftex.def)             Requested size: 239.39621pt x 107.50244pt.
+
+Overfull \hbox (4.5187pt too wide) in paragraph at lines 401--402
+ [][] 
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.30003pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.30003pt}.
+
+[4
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 \end{figure}
+                  
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.404 \end{figure}
+                   <./image_dump/SIPC_vars.png> <./image_dump/SIPC_odes.png>]
+<image_dump/SIPC_feed.png, id=87, 918.43124pt x 83.31125pt>
+File: image_dump/SIPC_feed.png Graphic file (type png)
+<use image_dump/SIPC_feed.png>
+Package pdftex.def Info: image_dump/SIPC_feed.png  used on input line 408.
+(pdftex.def)             Requested size: 229.60724pt x 20.82776pt.
+<image_dump/DIPC_coefs.png, id=91, 514.92375pt x 354.32375pt>
+File: image_dump/DIPC_coefs.png Graphic file (type png)
+<use image_dump/DIPC_coefs.png>
+Package pdftex.def Info: image_dump/DIPC_coefs.png  used on input line 422.
+(pdftex.def)             Requested size: 180.226pt x 124.01517pt.
+<image_dump/DIPC_entrs.png, id=94, 698.61pt x 483.8075pt>
+File: image_dump/DIPC_entrs.png Graphic file (type png)
+<use image_dump/DIPC_entrs.png>
+Package pdftex.def Info: image_dump/DIPC_entrs.png  used on input line 430.
+(pdftex.def)             Requested size: 209.58461pt x 145.14337pt.
+<image_dump/DIPC_ODE.png, id=97, 693.59125pt x 221.82875pt>
+File: image_dump/DIPC_ODE.png Graphic file (type png)
+<use image_dump/DIPC_ODE.png>
+Package pdftex.def Info: image_dump/DIPC_ODE.png  used on input line 438.
+(pdftex.def)             Requested size: 208.07898pt x 66.54912pt.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.30003pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.30003pt}.
+
+[5
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.444 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.444 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.444 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.444 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.444 
+       <./image_dump/SIPC_Klaw.png> <./image_dump/SIPC_feed.png> <./image_dump/
+DIPC_coefs.png> <./image_dump/DIPC_entrs.png> <./image_dump/DIPC_ODE.png>]
+<image_dump/Blowup.png, id=113, 339.2675pt x 481.8pt>
+File: image_dump/Blowup.png Graphic file (type png)
+<use image_dump/Blowup.png>
+Package pdftex.def Info: image_dump/Blowup.png  used on input line 448.
+(pdftex.def)             Requested size: 203.56206pt x 289.08221pt.
+<image_dump/overlay.png, id=114, 1037.8775pt x 738.76pt>
+File: image_dump/overlay.png Graphic file (type png)
+<use image_dump/overlay.png>
+Package pdftex.def Info: image_dump/overlay.png  used on input line 458.
+(pdftex.def)             Requested size: 238.7068pt x 169.91122pt.
+
+Overfull \hbox (3.8293pt too wide) in paragraph at lines 458--459
+ [][] 
+ []
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.30003pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.30003pt}.
+
+[6
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.469 \section
+              {Results}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.11}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.469 \section
+              {Results} <./image_dump/Blowup.png> <./image_dump/overlay.png>]
+<image_dump/s_full_n.png, id=124, 498.86375pt x 721.69624pt>
+File: image_dump/s_full_n.png Graphic file (type png)
+<use image_dump/s_full_n.png>
+Package pdftex.def Info: image_dump/s_full_n.png  used on input line 485.
+(pdftex.def)             Requested size: 199.54196pt x 288.67339pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<image_dump/s_-0.5_-0.2_n.png, id=125, 498.86375pt x 721.69624pt>
+File: image_dump/s_-0.5_-0.2_n.png Graphic file (type png)
+<use image_dump/s_-0.5_-0.2_n.png>
+Package pdftex.def Info: image_dump/s_-0.5_-0.2_n.png  used on input line 492.
+(pdftex.def)             Requested size: 199.54196pt x 288.67339pt.
+<image_dump/s_-1.0_-0.5_n.png, id=126, 498.86375pt x 721.69624pt>
+File: image_dump/s_-1.0_-0.5_n.png Graphic file (type png)
+<use image_dump/s_-1.0_-0.5_n.png>
+Package pdftex.def Info: image_dump/s_-1.0_-0.5_n.png  used on input line 498.
+(pdftex.def)             Requested size: 199.54196pt x 288.67339pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-(./final_paper_template.bbl
-! Misplaced alignment tab character &.
-l.6 ...echnical Report CSE-04-006, Oregon Health &
-                                                   Science University,
-? 
-! Misplaced alignment tab character &.
-l.12 \newblock Brunton &
-                         Kutz, 2017.
-? 
 
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.30003pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.30003pt}.
+
+[7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.12}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.501 \end{figure}
+                   <./image_dump/s_full_n.png>]
+<image_dump/d_0.2.png, id=138, 474.77374pt x 625.33624pt>
+File: image_dump/d_0.2.png Graphic file (type png)
+<use image_dump/d_0.2.png>
+Package pdftex.def Info: image_dump/d_0.2.png  used on input line 508.
+(pdftex.def)             Requested size: 189.90613pt x 250.13007pt.
+<image_dump/d_-0.35.png, id=139, 456.70625pt x 611.28375pt>
+File: image_dump/d_-0.35.png Graphic file (type png)
+<use image_dump/d_-0.35.png>
+Package pdftex.def Info: image_dump/d_-0.35.png  used on input line 514.
+(pdftex.def)             Requested size: 182.67926pt x 244.50917pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.30003pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.30003pt}.
+
+[8
+pdfTeX warning (ext4): destination with the same identifier (name{figure.13}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.518 W
+       e can see from the above figures that the system follows a similarly ...
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.14}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.518 W
+       e can see from the above figures that the system follows a similarly ...
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.15}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.518 W
+       e can see from the above figures that the system follows a similarly ...
+ <./image_dump/s_-0.5_-0.2_n.png> <./image_dump/s_-1.0_-0.5_n.png> <./image_dum
+p/d_0.2.png>]
+<image_dump/d_0.8.png, id=154, 408.52625pt x 577.15625pt>
+File: image_dump/d_0.8.png Graphic file (type png)
+<use image_dump/d_0.8.png>
+Package pdftex.def Info: image_dump/d_0.8.png  used on input line 521.
+(pdftex.def)             Requested size: 163.4076pt x 230.8584pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<image_dump/d_-0.4_-0.2.png, id=156, 456.70625pt x 643.40375pt>
+File: image_dump/d_-0.4_-0.2.png Graphic file (type png)
+<use image_dump/d_-0.4_-0.2.png>
+Package pdftex.def Info: image_dump/d_-0.4_-0.2.png  used on input line 531.
+(pdftex.def)             Requested size: 182.67926pt x 257.35693pt.
+<image_dump/d_0.1.5.png, id=157, 456.70625pt x 643.40375pt>
+File: image_dump/d_0.1.5.png Graphic file (type png)
+<use image_dump/d_0.1.5.png>
+Package pdftex.def Info: image_dump/d_0.1.5.png  used on input line 538.
+(pdftex.def)             Requested size: 182.67926pt x 257.35693pt.
+<image_dump/d_0.5.15.png, id=158, 472.76625pt x 679.53876pt>
+File: image_dump/d_0.5.15.png Graphic file (type png)
+<use image_dump/d_0.5.15.png>
+Package pdftex.def Info: image_dump/d_0.5.15.png  used on input line 544.
+(pdftex.def)             Requested size: 189.10315pt x 271.81068pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.30003pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.30003pt}.
+
+[9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.16}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.547 \end{figure}
+                  
+pdfTeX warning (ext4): destination with the same identifier (name{figure.17}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.547 \end{figure}
+                  
+pdfTeX warning (ext4): destination with the same identifier (name{figure.18}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.547 \end{figure}
+                   <./image_dump/d_-0.35.png> <./image_dump/d_0.8.png> <./image
+_dump/d_-0.4_-0.2.png>]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
+51.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
+<image_dump/omega_results.png, id=171, 492.84125pt x 698.61pt>
+File: image_dump/omega_results.png Graphic file (type png)
+<use image_dump/omega_results.png>
+Package pdftex.def Info: image_dump/omega_results.png  used on input line 554.
+(pdftex.def)             Requested size: 197.133pt x 279.43904pt.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 3.30003pt, for example:
+(fancyhdr)                \setlength{\footskip}{3.30003pt}.
+
+[10
+pdfTeX warning (ext4): destination with the same identifier (name{figure.19}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.560 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.20}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.560 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.21}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.560 
+       <./image_dump/d_0.1.5.png> <./image_dump/d_0.5.15.png> <./image_dump/ome
+ga_results.png>]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 5
+68.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `pcr' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Underfull \hbox (badness 10000) in paragraph at lines 568--569
+[][][]$\OT1/pcr/m/n/10 https : / / github . com / andykshim /
+ []
+
+(./final_paper_template.bbl
 Underfull \hbox (badness 1515) in paragraph at lines 15--20
 []\OT1/ptm/m/n/10 (+20) Xin Chen, Erika Abra-ham, and Sri-ram Sankara-
  []
@@ -953,13 +1262,9 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 3.30003pt, for example:
 (fancyhdr)                \setlength{\footskip}{3.30003pt}.
 
-[3
-pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
-s been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.274 \end{document}
-                     <./image_dump/SIPC_vars.png>] (./final_paper_template.aux)
+[11
+
+] (./final_paper_template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -968,13 +1273,13 @@ Package rerunfilecheck Info: File `final_paper_template.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 24835 strings out of 476182
- 450964 string characters out of 5795594
- 1954975 words of memory out of 5000000
- 46155 multiletter control sequences out of 15000+600000
- 592408 words of font info for 221 fonts, out of 8000000 for 9000
+ 25162 strings out of 476182
+ 457189 string characters out of 5795594
+ 1964975 words of memory out of 5000000
+ 46373 multiletter control sequences out of 15000+600000
+ 596473 words of font info for 269 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 99i,22n,101p,1224b,632s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,23n,101p,1224b,632s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -982,16 +1287,21 @@ ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/times/utmri8a.pfb>
-Output written on final_paper_template.pdf (3 pages, 265906 bytes).
+ublic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on final_paper_template.pdf (11 pages, 1380281 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
- 21 named destinations out of 1000 (max. 500000)
- 55324 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 288 PDF objects out of 1000 (max. 8388607)
+ 192 compressed objects within 2 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 57974 words of extra memory for PDF output out of 61914 (max. 10000000)
 
